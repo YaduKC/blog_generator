@@ -135,6 +135,10 @@ def extract_info(c_name, reference_blog):
     st.session_state.blog_data_['sections'] = section_list
     st.session_state.blog_data_['main_image'] = images['main_image']
 
+def load_blog():
+    from blog_preset import preset
+    st.session_state.blog_data_ = preset
+
 if __name__ == "__main__":
     st.set_page_config(layout='wide')
     column = [1,3,1]
@@ -145,6 +149,7 @@ if __name__ == "__main__":
         c_name = cols[1].text_input('Company Name')
         reference_blog = cols[1].text_area('Reference Blog', height=500)
         cols[1].button("Submit", on_click=extract_info, args=(c_name, reference_blog,))
+        cols[1].button("Load Generated Blog", on_click=load_blog)
         cols[1].write("---")
 
     if 'title' in st.session_state.blog_data_:
@@ -185,6 +190,6 @@ if __name__ == "__main__":
                     cols[1].write(section['content'])
             
 
-            with st.container():
-                cols = st.columns(column)
-                cols[1].write("---")
+        with st.container():
+            cols = st.columns(column)
+            cols[1].write("---")
