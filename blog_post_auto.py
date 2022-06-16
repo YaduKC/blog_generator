@@ -5,8 +5,8 @@ import openai
 from decouple import config
 import requests
 
-openai.api_key = config("OPENAI_KEY")
-UNSPLASH_KEY = config("UNSPLASH_KEY")
+openai.api_key = st.secrets["OPENAI_KEY"]
+UNSPLASH_KEY = st.secrets["UNSPLASH_KEY"]
 
 if 'blog_data_' not in st.session_state:
     st.session_state.blog_data_ = {}
